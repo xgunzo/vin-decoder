@@ -23,10 +23,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 
 @Composable
 fun HomeScreen() {
+    val navController = rememberNavController()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -81,16 +87,20 @@ fun HomeScreen() {
                 .fillMaxWidth()
                 .padding(0.dp, 30.dp)
         ) {
-            DecoderButton(onClick = { Log.d("Filled button", "Filled button clicked.") })
+            DecoderButton(onClick = { navController.navigate(Routes.Decoder.route) })
         }
 
     }
 }
 
+
 @Composable
 fun DecoderButton(onClick: () -> Unit) {
+    val navController = rememberNavController()
+
+
         Button(
-            onClick = { onClick() },
+            onClick = { navController.navigate(Routes.Decoder.route) },
             contentPadding = PaddingValues(
                 start = 30.dp,
                 top = 20.dp,

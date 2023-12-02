@@ -112,16 +112,22 @@ class MainActivity : ComponentActivity() {
         }
 }
 
+sealed class Routes(val route: String) {
+    object Home: Routes("home")
+    object Decoder : Routes("decoder")
+    object Highlighted : Routes("highlighted")
+}
+
 @Composable
 fun Navigation(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "home") {
-        composable("home") {
+        composable(Routes.Home.route) {
             HomeScreen()
         }
-        composable("decoder") {
+        composable(Routes.Decoder.route) {
             DecoderScreen()
         }
-        composable("highlighted") {
+        composable(Routes.Highlighted.route) {
             HighlightedScreen()
         }
     }
